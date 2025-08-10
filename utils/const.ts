@@ -1,0 +1,1 @@
+export const BASE_ROUTE = "https://preparation-se-be.vercel.app"

@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
+import { BASE_ROUTE } from "../utils/const";
 import axios from "axios";
 
 export default function App() {
   const [message, setMessage] = useState("");
 
   useEffect(() => {
-    axios
-      .get("http://localhost:5000/api/hello")
+    axios.get(`${BASE_ROUTE}/api/hello`)
       .then((res) => setMessage(res.data.message))
       .catch((err) => console.error(err));
   }, []);
