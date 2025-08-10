@@ -1,69 +1,40 @@
-# React + TypeScript + Vite
+# PREPARATION-SE-FE
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Welcome to **preparation-se-fe**, the frontend repository for study, preparation, and software engineering interview readiness.
 
-Currently, two official plugins are available:
+## Branch Workflow
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+This repository uses a multi-branch workflow to organize development:
 
-## Expanding the ESLint configuration
+- **main**: Production-ready code. All releases are made from this branch.
+- **developer**: Integration branch for features and fixes before merging into main.
+- **features/fixes branch**: Feature development or bug fixes start here, merged into `developer` when ready.
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+### Typical Workflow
 
-```js
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+1. Create a new branch from `developer` for your feature or fix (e.g., `features/your-feature-name`).
+2. Work on your changes, commit, and push the branch.
+3. Open a pull request targeting `developer`.
+4. **All pull requests must be reviewed and approved before merging into `developer` or `main`.**
+5. After review, changes are merged into `developer`.
+6. Periodically, `developer` is merged into `main` for releases.
 
-      // Remove tseslint.configs.recommended and replace with this
-      ...tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      ...tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      ...tseslint.configs.stylisticTypeChecked,
+### Workflow Diagram
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```mermaid
+graph TD
+    B[developer] --> C[main]
+    subgraph "Feature/Fix Branches"
+        A1[feat/feature-1]
+        A2[fix/bug-1]
+        A3[feat/feature-2]
+    end
+    A1 --> B
+    A2 --> B
+    A3 --> B
+    click B "#pull-requests-must-be-reviewed-and-approved-before-merging-into-developer-or-main" "Requires Review"
+    click C "#pull-requests-must-be-reviewed-and-approved-before-merging-into-developer-or-main" "Requires Review"
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+> **Note:**  
+> All pull requests **must be reviewed and approved** before they can be merged into the `developer` or `main` branches.
