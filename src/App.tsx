@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 
-function App() {
+export default function App() {
   const [message, setMessage] = useState("");
 
   useEffect(() => {
