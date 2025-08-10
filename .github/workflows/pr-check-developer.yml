@@ -1,0 +1,17 @@
+name: Check PR Source for Developer
+
+on:
+  pull_request:
+    branches:
+      - developer
+
+jobs:
+  check-source:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Fail if PR from main or developer
+        run: |
+          if [[ "${{ github.head_ref }}" == "main" || "${{ github.head_ref }}" == "developer" ]]; then
+            echo "❌ PR to developer must come from a feature/hotfix branch"
+            exit 1
+          fi
