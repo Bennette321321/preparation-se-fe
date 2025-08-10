@@ -38,4 +38,3 @@ graph TD
 
 > **Note:**  
 > All pull requests **must be reviewed and approved** before they can be merged into the `developer` or `main` branches.
-> Recommend: After merging, please delete your branch!!!
