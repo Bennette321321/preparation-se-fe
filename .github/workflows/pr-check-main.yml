@@ -1,0 +1,17 @@
+name: Check PR Source for Main
+
+on:
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  check-source:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Fail if PR not from developer
+        run: |
+          if [[ "${{ github.head_ref }}" != "developer" ]]; then
+            echo "❌ PR to main must come from developer branch"
+            exit 1
+          fi
